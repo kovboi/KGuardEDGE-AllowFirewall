@@ -49,12 +49,15 @@ if (-not $rule) {
     Write-Output "Rule created: $ruleName => $($currentIPs -join ', ')"
 }
 else {
-    # Retrieve existing remote addresses
-    $existingIPs = (Get-NetFirewallAddressFilter -AssociatedNetFirewallRule $rule).RemoteAddress
-    $oldSet      = [Collections.Generic.HashSet[string]]::new($existingIPs)
-    $newSet      = [Collections.Generic.HashSet[string]]::new($currentIPs)
+    # Retrieve existing RemoteAddress
+    $existingFilter = Get-NetFirewallAddressFilter -AssociatedNetFirewallRule $rule
+    $existingIPs    = $existingFilter.RemoteAddress -split ',' | Sort-Object
 
-    if (-not $oldSet.SetEquals($newSet)) {
+    # Compare existing and current IP string lists
+    $existingText = $existingIPs -join ','
+    $currentText  = $currentIPs  -join ','
+
+    if ($existingText -ne $currentText) {
         # Update firewall rule with new IPs
         Set-NetFirewallRule `
             -DisplayName   $ruleName `
