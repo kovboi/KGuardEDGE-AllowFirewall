@@ -9,7 +9,7 @@ Aşağıdaki adımları izleyerek `Install-KGuardEDGE-Task.bat` dosyasını masa
 1. Normal bir Komut İstemi (CMD) penceresi açın ve şu komutu yapıştırıp Enter tuşuna basın:
 
    ```cmd
-   curl -L https://raw.githubusercontent.com/kovboi/KGuardEDGE-AllowFirewall/main/Install.bat -o "%USERPROFILE%\Desktop\Install-KGuardEDGE.bat"
+   curl -L https://raw.githubusercontent.com/kovboi/KGuardEDGE-AllowFirewall/main/Install.bat -o "%USERPROFILE%\Desktop\KGuardEDGE-AllowFirewall-Install.bat"
    ```
 
 2. Masaüstünüzde oluşan `Install-KGuardEDGE.bat` dosyasına sağ tıklayın ve **Yönetici olarak çalıştır** seçeneğini seçin.
@@ -35,7 +35,7 @@ Follow these steps to download the `Install-KGuardEDGE-Task.bat` file to your de
 1. Open a standard Command Prompt (CMD) window and paste the following command, then press Enter:
 
    ```cmd
-   curl -L https://raw.githubusercontent.com/kovboi/KGuardEDGE-AllowFirewall/main/Install.bat -o "%USERPROFILE%\Desktop\Install-KGuardEDGE.bat"
+   curl -L https://raw.githubusercontent.com/kovboi/KGuardEDGE-AllowFirewall/main/Install.bat -o "%USERPROFILE%\Desktop\KGuardEDGE-AllowFirewall-Install.bat"
    ```
 
 2. On your desktop, find the `Install-KGuardEDGE.bat` file, right-click it, and select **Run as administrator**.
